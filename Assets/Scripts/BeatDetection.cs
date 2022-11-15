@@ -9,36 +9,63 @@ public class BeatDetection : MonoBehaviour
     float[] samples; // array that will be populated with audio samples
     int sampleRate; // number of samples per second 
     int channelCount;
-    int instantEnergySampleCount = 1024;
+    int instantSamples = 1024;
+    float c = 1.3f;
+    Queue<Beat> beats;
     
     void BufferTrackSampleData()
     {
 
     }
-
+    
+    public class Beat
+    {
+        float sample;
+        float time;
+        float instantEnergy;
+        public Beat(int sample, float time, float energy)
+        {
+            this.sample = sample;
+            this.time = time;
+            this.instantEnergy = energy;
+        }
+    }
     void SimpleSoundEnergyBeatDetection()
     {
-         // if (instant energy) > C * (local energy average) then register a beat.
-        for (int pos = sampleRate; pos < samples.Length; pos += instantEnergySampleCount * channelCount)
+        beats = new Queue<Beat>();
+        float[] sampleEnergies = new float[samples.Length / channelCount];
+        for (int pos = 0; pos < samples.Length; pos += channelCount)
         {
-            // Calculate instant energy 
-            // E_left + E_right
-            // Sum from pos -> pos + instantEnergySampleCount (1024) { left_signal^2 + right_signal^2 }
-            float instantEnergy = 0;
-            for (int l = pos; l < pos + instantEnergySampleCount * channelCount; l += channelCount)
+            int sampleIndex = pos / channelCount;
+            sampleEnergies[sampleIndex] = 0;
+            // The energy for one sample is the sum of the energies for each channel.
+            for (int chan = 0; chan < channelCount; chan += 1)
             {
-                for (int i = 0; i < channelCount; i++)
+                sampleEnergies[sampleIndex] += Mathf.Pow(samples[pos + chan], 2);
+            }
+            if (sampleIndex % instantSamples == 0 && sampleIndex >= sampleRate) // if sampleIndex is divisible by 1024
+            {
+                // Calculate instant energy for the last instantSamples many samples.
+                float instantEnergy = 0;
+                for (int i = sampleIndex - instantSamples; i < sampleIndex; i++)
                 {
-                    instantEnergy += Mathf.Pow(samples[l + i], 2);
+                    instantEnergy += sampleEnergies[i];
+                }
+                // Calculate total energy for the last sampleRate many samples.
+                float totalEnergy = 0; 
+                for (int i = sampleIndex - sampleRate; i < sampleIndex; i++)
+                {
+                    totalEnergy += sampleEnergies[i];
+                }
+                // Calculate average local energy by multiplying total energy by (instantSamples / sampleRate).
+                float localAverageEnergy = totalEnergy * instantSamples / sampleRate;
+                // If instant energy > C * average local energy then register a beat. 
+                if (instantEnergy > c * localAverageEnergy)
+                {
+                    // Register a beat by adding it to a queue.
+                    beats.Enqueue(new Beat(sampleIndex, sampleIndex / sampleRate, instantEnergy));
                 }
             }
-
-            // TODO: Add caching here! (Instant Energy calculations can be used for local average energy)
-            // Calculate local average energy
-            // Sum from pos -> pos + instantEnergySampleCount (1024) { left_signal^2 + right_signal_^2 } 
-            float localEnergyAverage = 0;
-            // TODO : write this part
-
         }
     }
 
