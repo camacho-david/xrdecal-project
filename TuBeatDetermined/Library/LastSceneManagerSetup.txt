@@ -1,0 +1,5 @@
+sceneSetups:
+- path: C:/xrdecal-project/Assets/Scenes/NoteScene.unity
+  isLoaded: 1
+  isActive: 1
+  isSubScene: 0

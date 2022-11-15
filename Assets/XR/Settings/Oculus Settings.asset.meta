@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 51397ce96287bd24999810cd4bda8202
+=======
+guid: 9d380c371c1a14346baad6de5dab7c00
+>>>>>>> origin/Helena
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 11400000
