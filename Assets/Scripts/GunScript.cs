@@ -20,12 +20,6 @@ public class GunScript : MonoBehaviour
 
     }
 
-    // Update is called once per physics update
-    void FixedUpdate()
-    {
-        
-    }
-
     // Update is called once per frame
     private void Update()
     {
