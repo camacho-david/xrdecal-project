@@ -30,6 +30,7 @@ public class NoteCreation : MonoBehaviour
             go = Instantiate(prefab, position, Quaternion.identity);
             //destroy note after 2 seconds
             Object.Destroy(go, 600/82f);
+            Score.instance.AddPoint(); // added by David as a test for score adding
             nextSpawn = Time.time+30/82f;
         }
     }
