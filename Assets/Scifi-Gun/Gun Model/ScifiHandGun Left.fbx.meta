@@ -1,9 +1,29 @@
 fileFormatVersion: 2
-guid: 28ebbcd7f4773384e867c255af2c669b
+guid: dcacf1f5b6bd4314a8bf7b82041a599d
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Barrel
+    second: {fileID: 2100000, guid: fe75340e802d9ce40926fe350133ac9d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Purple_Emmisions
+    second: {fileID: 2100000, guid: 263631ad2554c5946aadaa6c7e7a48e5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Red-Emmisions
+    second: {fileID: 2100000, guid: c8e88f5156cc96540a5d9709301809fd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: White-Emmisions
+    second: {fileID: 2100000, guid: 6a247f4e235b3b24da117d3d4161fc37, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
