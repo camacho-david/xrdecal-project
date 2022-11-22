@@ -18,7 +18,9 @@ public class GunScript : MonoBehaviour
     public Transform raycastOrigin;
     public float gunRange = 50f;
     public float laserDuration = 0.05f;
+    public float fireRate = 0.5f;
     LineRenderer laserLine;
+    float fireTimer;
 
     AudioSource gunAudio;
 
@@ -32,9 +34,11 @@ public class GunScript : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (controllerActionTrigger.action.ReadValue<float>() != 0)
+        fireTimer += Time.deltaTime;
+        if (controllerActionTrigger.action.ReadValue<float>() != 0 && fireTimer > fireRate)
         {
             Debug.Log("Trigger from " + gameObject.name.ToString());
+            fireTimer = 0;
             fireGun();
         }
     }
