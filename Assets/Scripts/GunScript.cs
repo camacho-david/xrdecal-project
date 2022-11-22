@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -14,12 +16,16 @@ public class GunScript : MonoBehaviour
     public float duration = 0.5f;
 
     public Transform raycastOrigin;
+    public float gunRange = 50f;
+    public float laserDuration = 0.05f;
+    LineRenderer laserLine;
 
     AudioSource gunAudio;
 
     // Start is called before the first frame update
     void Start()
     {
+        laserLine = GetComponent<LineRenderer>();
         gunAudio = GetComponent<AudioSource>();
     }
 
@@ -36,22 +42,35 @@ public class GunScript : MonoBehaviour
     // FireGun is called when gun is fired
     void fireGun()
     {
+        Debug.Log("Gun was fired");
+
         controller.SendHapticImpulse(amplitude, duration);
         gunAudio.PlayOneShot(gunAudio.clip);
-        Debug.Log("Raycast was fired");
-        Debug.DrawRay(raycastOrigin.position, raycastOrigin.forward * 100, Color.green);
 
+        laserLine.SetPosition(0, raycastOrigin.position);
         RaycastHit hit;
         if (Physics.Raycast(raycastOrigin.position, raycastOrigin.forward, out hit))
         {
-            Debug.Log("Raycast was fired");
             GameObject hitObject = hit.collider.gameObject;
             if (hitObject.tag == "Target")
             {
                 hitObject.SendMessage("Shatter", hit.point, SendMessageOptions.DontRequireReceiver);
                 Score.instance.AddPoint();
                 Debug.Log("I've hit the target!");
+                laserLine.SetPosition(1, hit.point);
             }
+        } 
+        else
+        {
+            laserLine.SetPosition(1, raycastOrigin.position + (raycastOrigin.forward * gunRange));
         }
+        StartCoroutine(ShootLaser());
+    }
+
+    IEnumerator ShootLaser()
+    {
+        laserLine.enabled = true;
+        yield return new WaitForSeconds(laserDuration);
+        laserLine.enabled = false;
     }
 }
