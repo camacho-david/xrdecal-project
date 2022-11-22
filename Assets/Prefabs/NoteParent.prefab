@@ -91,6 +91,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cylinder
       objectReference: {fileID: 0}
+    - target: {fileID: 4038795630394636906, guid: d13374f3dab1244558f6673799e78b90, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4283626107754776916, guid: d13374f3dab1244558f6673799e78b90, type: 3}
       propertyPath: m_Height
       value: 2
@@ -159,7 +163,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4283626107754776916, guid: d13374f3dab1244558f6673799e78b90, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d13374f3dab1244558f6673799e78b90, type: 3}
 --- !u!1 &3938366863128550114 stripped
 GameObject:
@@ -191,6 +196,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8879008510058007823}
     m_Modifications:
+    - target: {fileID: -8435355283486964030, guid: 63fa7e863bc94444ca405d411efb6b0b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2795277660690627089, guid: 63fa7e863bc94444ca405d411efb6b0b, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -253,6 +262,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8879008510058007823}
     m_Modifications:
+    - target: {fileID: -8435355283486964030, guid: 63fa7e863bc94444ca405d411efb6b0b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2795277660690627089, guid: 63fa7e863bc94444ca405d411efb6b0b, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -315,6 +328,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8879008510058007823}
     m_Modifications:
+    - target: {fileID: -8435355283486964030, guid: 63fa7e863bc94444ca405d411efb6b0b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2795277660690627089, guid: 63fa7e863bc94444ca405d411efb6b0b, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -377,6 +394,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8879008510058007823}
     m_Modifications:
+    - target: {fileID: -8435355283486964030, guid: 63fa7e863bc94444ca405d411efb6b0b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2795277660690627089, guid: 63fa7e863bc94444ca405d411efb6b0b, type: 3}
       propertyPath: m_RootOrder
       value: 2

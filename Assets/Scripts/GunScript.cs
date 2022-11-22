@@ -46,8 +46,10 @@ public class GunScript : MonoBehaviour
         {
             Debug.Log("Raycast was fired");
             GameObject hitObject = hit.collider.gameObject;
-            if (hitObject.tag == "Tag of target")
+            if (hitObject.tag == "Target")
             {
+                hitObject.SendMessage("Shatter", hit.point, SendMessageOptions.DontRequireReceiver);
+                Score.instance.AddPoint();
                 Debug.Log("I've hit the target!");
             }
         }

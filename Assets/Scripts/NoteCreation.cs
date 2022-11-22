@@ -5,6 +5,7 @@ using UnityEngine;
 public class NoteCreation : MonoBehaviour
 {
     public GameObject prefab;
+    public float height;
     //stores time that a note appear
     public GameObject music;
     public List<float> nums = new List<float>(){};
@@ -27,18 +28,23 @@ public class NoteCreation : MonoBehaviour
     {
             
         if (Time.time >= nextSpawn && index<nums.Count){
-            print("the beat timestamp");
-            print(nums[index]);
+            //print("the beat timestamp");
+            //print(nums[index]);
         
             // //randomizing position
-            var position = new Vector3(Random.Range(-10.0f, 10.0f), 0, Random.Range(-10.0f, 10.0f));
+            var position = new Vector3(Random.Range(-10.0f, 10.0f), height, Random.Range(0.0f, 20.0f));
             listOfPosition.Add(position);
             //wait for this many seconds to create new note
             GameObject go;
-            print("instantiating");
+            //("instantiating");
             go = Instantiate(prefab, position, Quaternion.identity);
             //destroy note after 2 seconds
-            Object.Destroy(go, 2f);
+            go.tag = "Target";
+
+
+            //Object.Destroy(go, 2f);
+
+
             index++;
             if (index+1<nums.Count){
             nextSpawn = nums[index];}
