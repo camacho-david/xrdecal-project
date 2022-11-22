@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -12,12 +10,17 @@ public class GunScript : MonoBehaviour
     public InputActionReference controllerActionTrigger;
 
     public XRBaseController controller;
+    public float amplitude = 0.5f;
+    public float duration = 0.5f;
+
     public Transform raycastOrigin;
+
+    AudioSource gunAudio;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        gunAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -33,7 +36,8 @@ public class GunScript : MonoBehaviour
     // FireGun is called when gun is fired
     void fireGun()
     {
-        controller.SendHapticImpulse(0.5f, 0.1f);
+        controller.SendHapticImpulse(amplitude, duration);
+        gunAudio.PlayOneShot(gunAudio.clip);
 
         RaycastHit hit;
         if (Physics.Raycast(raycastOrigin.position, raycastOrigin.forward, out hit))
