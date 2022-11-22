@@ -46,6 +46,8 @@ public class GunScript : MonoBehaviour
 
         controller.SendHapticImpulse(amplitude, duration);
         gunAudio.PlayOneShot(gunAudio.clip);
+        Debug.Log("Raycast was fired");
+        Debug.DrawRay(raycastOrigin.position, raycastOrigin.forward * 100, Color.green);
 
         laserLine.SetPosition(0, raycastOrigin.position);
         RaycastHit hit;
