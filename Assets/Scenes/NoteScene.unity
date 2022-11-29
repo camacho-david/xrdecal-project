@@ -460,7 +460,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b6397369eb2742b6ad668d02c73b58b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 2527458915456312448, guid: 98f83c116124c4c4bb1d913a470baa03, type: 3}
+  prefabl: {fileID: 2527458915456312448, guid: 98f83c116124c4c4bb1d913a470baa03, type: 3}
+  prefabr: {fileID: 2870031935232951647, guid: c47844bf80bc5654a803941ed88581f7, type: 3}
   height: 5
   music: {fileID: 0}
   nums:

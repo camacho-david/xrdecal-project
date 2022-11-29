@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Target
+  - LeftGun
+  - RightGun
+  - Right
+  - Left
   layers:
   - Default
   - TransparentFX

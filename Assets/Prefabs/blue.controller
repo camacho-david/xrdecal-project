@@ -11,7 +11,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 7269004988865655156}
-    m_Position: {x: 200, y: 0, z: 0}
+    m_Position: {x: 290, y: 10, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -28,7 +28,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: fakenotemain
+  m_Name: blue
   serializedVersion: 5
   m_AnimatorParameters: []
   m_AnimatorLayers:
@@ -51,7 +51,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: NoteMain
+  m_Name: blue
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -64,7 +64,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 0f6c01d888cc448aea09646b909481d6, type: 2}
+  m_Motion: {fileID: 7400000, guid: a3ec97eb41fa17b4caf771c41c86758a, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

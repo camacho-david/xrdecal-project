@@ -17,8 +17,8 @@ GameObject:
   - component: {fileID: -1581063800310355382}
   - component: {fileID: -4065397628147212102}
   m_Layer: 0
-  m_Name: simplecube
-  m_TagString: Target
+  m_Name: redcube
+  m_TagString: Left
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -115,7 +115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   generation: 1
   generationLimit: 3
-  cuts: 2
+  cuts: 5
   fillCut: 1
   sendPreSplitMessage: 0
   sendPostSplitMessage: 0

@@ -58,11 +58,16 @@ public class GunScript : MonoBehaviour
         if (Physics.Raycast(raycastOrigin.position, raycastOrigin.forward, out hit, gunRange, layerMask))
         {
             GameObject hitObject = hit.collider.gameObject;
-            if (hitObject.tag == "Target")
+            if (gameObject.tag == "LeftGun" && hitObject.tag == "Left")
             {
                 hitObject.SendMessage("Shatter", hit.point, SendMessageOptions.DontRequireReceiver);
                 Score.instance.AddPoint();
-                Debug.Log("I've hit the target!");
+                laserLine.SetPosition(1, hit.point);
+            }
+            else if (gameObject.tag == "RightGun" && hitObject.tag == "Right")
+            {
+                hitObject.SendMessage("Shatter", hit.point, SendMessageOptions.DontRequireReceiver);
+                Score.instance.AddPoint();
                 laserLine.SetPosition(1, hit.point);
             }
             else

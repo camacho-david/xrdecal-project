@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class NoteCreation : MonoBehaviour
 {
-    public GameObject prefab;
+    public GameObject prefabl;
+    public GameObject prefabr;
     public float height;
     //stores time that a note appear
     public GameObject music;
@@ -39,10 +40,20 @@ public class NoteCreation : MonoBehaviour
             //wait for this many seconds to create new note
             GameObject go;
             //("instantiating");
-            go = Instantiate(prefab, position, Quaternion.identity);
+            
             //destroy note after 2 seconds
-            go.tag = "Target";
-
+            int choice = Random.Range(0, 2);
+            print("choice"+choice.ToString());
+            if (choice==0)
+            {
+                go = Instantiate(prefabl, position, Quaternion.identity);
+                go.tag = "Left";
+            }
+            else
+            {
+                go = Instantiate(prefabr, position, Quaternion.identity);
+                go.tag = "Right";
+            }
 
             Object.Destroy(go, 2f);
 

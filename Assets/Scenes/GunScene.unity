@@ -444,6 +444,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gun(AxisCorrection) Right
       objectReference: {fileID: 0}
+    - target: {fileID: 8048859450012617638, guid: 7ac466834e69b554ea2ea56708cb6975, type: 3}
+      propertyPath: m_TagString
+      value: RightGun
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ac466834e69b554ea2ea56708cb6975, type: 3}
 --- !u!4 &336206996 stripped
@@ -928,6 +932,10 @@ PrefabInstance:
     - target: {fileID: 8048859450012617638, guid: ff1bdae200e22684e97b07db1270be26, type: 3}
       propertyPath: m_Name
       value: Gun(AxisCorrection) Left
+      objectReference: {fileID: 0}
+    - target: {fileID: 8048859450012617638, guid: ff1bdae200e22684e97b07db1270be26, type: 3}
+      propertyPath: m_TagString
+      value: LeftGun
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff1bdae200e22684e97b07db1270be26, type: 3}
