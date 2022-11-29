@@ -53,7 +53,9 @@ public class GunScript : MonoBehaviour
 
         laserLine.SetPosition(0, raycastOrigin.position);
         RaycastHit hit;
-        if (Physics.Raycast(raycastOrigin.position, raycastOrigin.forward, out hit))
+        int layerMask = 1 << 2;
+        layerMask = ~layerMask;
+        if (Physics.Raycast(raycastOrigin.position, raycastOrigin.forward, out hit, gunRange, layerMask))
         {
             GameObject hitObject = hit.collider.gameObject;
             if (hitObject.tag == "Target")
@@ -61,6 +63,10 @@ public class GunScript : MonoBehaviour
                 hitObject.SendMessage("Shatter", hit.point, SendMessageOptions.DontRequireReceiver);
                 Score.instance.AddPoint();
                 Debug.Log("I've hit the target!");
+                laserLine.SetPosition(1, hit.point);
+            }
+            else
+            {
                 laserLine.SetPosition(1, hit.point);
             }
         } 

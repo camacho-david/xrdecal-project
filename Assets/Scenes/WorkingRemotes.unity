@@ -240,6 +240,9 @@ MonoBehaviour:
   amplitude: 0.5
   duration: 0.5
   raycastOrigin: {fileID: 405340806}
+  gunRange: 50
+  laserDuration: 0.05
+  fireRate: 0.5
 --- !u!1 &87414533
 GameObject:
   m_ObjectHideFlags: 0
@@ -722,6 +725,9 @@ MonoBehaviour:
   amplitude: 0.5
   duration: 0.5
   raycastOrigin: {fileID: 2052341568}
+  gunRange: 50
+  laserDuration: 0.05
+  fireRate: 0.5
 --- !u!1 &663317354
 GameObject:
   m_ObjectHideFlags: 0

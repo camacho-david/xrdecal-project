@@ -329,7 +329,8 @@ namespace ShatterToolkit
                 float volume = newVolumes[i];
                 
                 GameObject newGameObject = (GameObject)Instantiate(gameObject);
-                 Destroy(newGameObject, 2f);
+                newGameObject.layer = 2;
+                Destroy(newGameObject, 1f);
                 
                 // Set shatter tool
                 ShatterTool newShatterTool = newGameObject.GetComponent<ShatterTool>();

@@ -14,6 +14,8 @@ public class NoteCreation : MonoBehaviour
     List<Vector3> listOfPosition = new List<Vector3>() {};
     // Start is called before the first frame update
     private float nextSpawn = 0.0f;
+    public float mindistance=5f;
+    public float maxdistance=15f;
     void Start()
     {
         nums = readAudio.beatarray;
@@ -32,7 +34,7 @@ public class NoteCreation : MonoBehaviour
             //print(nums[index]);
         
             // //randomizing position
-            var position = new Vector3(Random.Range(-10.0f, 10.0f), height, Random.Range(0.0f, 20.0f));
+            var position = new Vector3(Random.Range(-10.0f, 10.0f), height, Random.Range(mindistance, maxdistance));
             listOfPosition.Add(position);
             //wait for this many seconds to create new note
             GameObject go;
@@ -42,7 +44,7 @@ public class NoteCreation : MonoBehaviour
             go.tag = "Target";
 
 
-            //Object.Destroy(go, 2f);
+            Object.Destroy(go, 2f);
 
 
             index++;
