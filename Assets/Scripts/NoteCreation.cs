@@ -55,7 +55,7 @@ public class NoteCreation : MonoBehaviour
             //print(nums[index]);
         
             // //randomizing position
-            var position = new Vector3(Random.Range(-10.0f, 10.0f), height, Random.Range(mindistance, maxdistance));
+            var position = new Vector3(Random.Range(-7.0f, 7.0f), height, Random.Range(mindistance, maxdistance));
             listOfPosition.Add(position);
             //wait for this many seconds to create new note
             GameObject go;

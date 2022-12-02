@@ -75,10 +75,30 @@ public class GunScript : MonoBehaviour
                 laserLine.SetPosition(1, hit.point);
                 shatterAudio.PlayOneShot(shatterAudio.clip);
             }
+/*            else if (hitObject.tag == "StartButton")
+            {
+                laserLine.SetPosition(1, hit.point);
+                SceneManager.LoadScene("Level1", LoadSceneMode.Single);
+            }*/
             else if (hitObject.tag == "StartButton")
             {
                 laserLine.SetPosition(1, hit.point);
-                SceneManager.LoadScene("Level", LoadSceneMode.Single);
+                SceneManager.LoadScene("Load", LoadSceneMode.Single);
+            }
+            else if (hitObject.tag == "Song1")
+            {
+                laserLine.SetPosition(1, hit.point);
+                SceneManager.LoadScene("Level1", LoadSceneMode.Single);
+            }
+            else if (hitObject.tag == "Song2")
+            {
+                laserLine.SetPosition(1, hit.point);
+                SceneManager.LoadScene("Level2", LoadSceneMode.Single);
+            }
+            else if (hitObject.tag == "Song3")
+            {
+                laserLine.SetPosition(1, hit.point);
+                SceneManager.LoadScene("Level3", LoadSceneMode.Single);
             }
             else
             {

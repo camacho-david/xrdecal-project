@@ -11,6 +11,9 @@ TagManager:
   - Left
   - LoadButton
   - StartButton
+  - Song1
+  - Song2
+  - Song3
   layers:
   - Default
   - TransparentFX
