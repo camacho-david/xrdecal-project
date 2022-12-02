@@ -9,6 +9,8 @@ TagManager:
   - RightGun
   - Right
   - Left
+  - LoadButton
+  - StartButton
   layers:
   - Default
   - TransparentFX

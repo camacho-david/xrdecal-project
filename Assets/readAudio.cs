@@ -5,7 +5,7 @@ using UnityEngine;
 public class readAudio : MonoBehaviour
 {
     private float[] samples;
-    private float threshold = 1f; 
+    private float threshold = 0.3f; 
     private float cooldown = 0.5f; // in seconds
     private float lastbeat=0f; // in seconds
     private float herz = 44100f;
@@ -15,8 +15,11 @@ public class readAudio : MonoBehaviour
     private int detectinterval = 100; //in hertz
     static public  List<float> beatarray = new List<float>(); //array of timestamps of beats
     // Start is called before the first frame update
-    void Start()
-    {   // put song data into this samples array
+    void Awake()
+
+    {
+        beatarray = new List<float>();
+        // put song data into this samples array
         AudioSource audioSource = GetComponent<AudioSource>();
         int samples_len = audioSource.clip.samples * audioSource.clip.channels;
         samples = new float[samples_len];
@@ -38,7 +41,7 @@ public class readAudio : MonoBehaviour
                     lastbeat = (float)index/herz; // update this to become the last beat
                     beatarray.Add(lastbeat);
                     // print(lastbeat);
-                    }
+                }
             }
         lastenergy = samples[index];
         if (index>detectinterval){

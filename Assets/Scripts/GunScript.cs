@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.SceneManagement;
 
 public class GunScript : MonoBehaviour
 {
@@ -22,13 +23,16 @@ public class GunScript : MonoBehaviour
     LineRenderer laserLine;
     float fireTimer;
 
-    AudioSource gunAudio;
+    AudioSource shatterAudio;
+
+    public Score scoreScript;
 
     // Start is called before the first frame update
     void Start()
     {
         laserLine = GetComponent<LineRenderer>();
-        gunAudio = GetComponent<AudioSource>();
+        shatterAudio = GetComponent<AudioSource>();
+        
     }
 
     // Update is called once per frame
@@ -49,7 +53,6 @@ public class GunScript : MonoBehaviour
         Debug.Log("Gun was fired");
 
         controller.SendHapticImpulse(amplitude, duration);
-        gunAudio.PlayOneShot(gunAudio.clip);
 
         laserLine.SetPosition(0, raycastOrigin.position);
         RaycastHit hit;
@@ -61,14 +64,21 @@ public class GunScript : MonoBehaviour
             if (gameObject.tag == "LeftGun" && hitObject.tag == "Left")
             {
                 hitObject.SendMessage("Shatter", hit.point, SendMessageOptions.DontRequireReceiver);
-                Score.instance.AddPoint();
+                scoreScript.AddPoint();
                 laserLine.SetPosition(1, hit.point);
+                shatterAudio.PlayOneShot(shatterAudio.clip);
             }
             else if (gameObject.tag == "RightGun" && hitObject.tag == "Right")
             {
                 hitObject.SendMessage("Shatter", hit.point, SendMessageOptions.DontRequireReceiver);
-                Score.instance.AddPoint();
+                scoreScript.AddPoint();
                 laserLine.SetPosition(1, hit.point);
+                shatterAudio.PlayOneShot(shatterAudio.clip);
+            }
+            else if (hitObject.tag == "StartButton")
+            {
+                laserLine.SetPosition(1, hit.point);
+                SceneManager.LoadScene("Level", LoadSceneMode.Single);
             }
             else
             {

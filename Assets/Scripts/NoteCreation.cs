@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class NoteCreation : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class NoteCreation : MonoBehaviour
     public float height;
     //stores time that a note appear
     public GameObject music;
-    public List<float> nums = new List<float>(){};
+    public static List<float> nums = new List<float>(){};
     private int index =0;
     // stores position of a time
     List<Vector3> listOfPosition = new List<Vector3>() {};
@@ -17,6 +18,11 @@ public class NoteCreation : MonoBehaviour
     private float nextSpawn = 0.0f;
     public float mindistance=5f;
     public float maxdistance=15f;
+
+    public Score scoreScript;
+
+    float endTime = 999999999999999999;
+
     void Start()
     {
         nums = readAudio.beatarray;
@@ -24,13 +30,27 @@ public class NoteCreation : MonoBehaviour
         print(beat);
         }
         nextSpawn = nums[index];
+        
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-            
-        if (Time.time >= nextSpawn && index<nums.Count){
+        if (index==nums.Count)
+        {
+            scoreScript.GameOver(nums.Count);
+            endTime = Time.timeSinceLevelLoad;
+            index++;
+            nums = new List<float>() { };
+            print("COUNT " + nums.Count.ToString());
+        }
+        else if (Time.timeSinceLevelLoad >= endTime + 5f)
+        {
+            SceneManager.LoadScene("Menu", LoadSceneMode.Single);
+
+
+        }
+        else if (Time.timeSinceLevelLoad >= nextSpawn && index<nums.Count){
             //print("the beat timestamp");
             //print(nums[index]);
         
@@ -55,13 +75,14 @@ public class NoteCreation : MonoBehaviour
                 go.tag = "Right";
             }
 
-            Object.Destroy(go, 2f);
+            Object.Destroy(go, 1.5f);
 
 
             index++;
-            if (index+1<nums.Count){
+            print(index);
+            if (index<nums.Count){
             nextSpawn = nums[index];}
         
-    }
+        }
     }
 }
