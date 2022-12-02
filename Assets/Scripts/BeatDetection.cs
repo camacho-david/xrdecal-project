@@ -9,9 +9,13 @@ public class BeatDetection : MonoBehaviour
     float[] samples; // array that will be populated with audio samples
     int sampleRate; // number of samples per second 
     int channelCount;
-    int instantSamples = 1024;
-    float c = 1.3f;
-    Queue<Beat> beats;
+    int instantSamples = 512;
+    /*TODO: Find a perfect value for C. Too low = too many beats, too high = too few (or none) beats
+     * Good value for 60 bpm metronome is 20
+     * Good value for 155 bpm metronome is 10
+     */
+    public float c = 1.7f;
+    public Queue<Beat> beats;
     
     void BufferTrackSampleData()
     {
@@ -20,9 +24,9 @@ public class BeatDetection : MonoBehaviour
     
     public class Beat
     {
-        float sample;
-        float time;
-        float instantEnergy;
+        public float sample;
+        public float time;
+        public float instantEnergy;
         public Beat(int sample, float time, float energy)
         {
             this.sample = sample;
@@ -63,38 +67,36 @@ public class BeatDetection : MonoBehaviour
                 if (instantEnergy > c * localAverageEnergy)
                 {
                     // Register a beat by adding it to a queue.
-                    beats.Enqueue(new Beat(sampleIndex, sampleIndex / sampleRate, instantEnergy));
+                    Beat beat = new Beat(sampleIndex, (float) sampleIndex / sampleRate, instantEnergy);
+                    beats.Enqueue(beat);
+                    Debug.Log("Beat detected at time: (" + beat.time.ToString("F6") + ")");
                 }
             }
         }
+        Debug.Log("Total number of beats: " + beats.Count);
+        Debug.Log("Average BPM: " + (float) beats.Count / (clip.length / 60f));
     }
 
     void Start()
     {
+        // Grab the game objects with our audio data
         track = GameObject.FindGameObjectWithTag("Track").GetComponent<AudioSource>();
         clip = track.clip;
         sampleRate = clip.frequency;
         channelCount = clip.channels;
 
-        // Code for using AudioSource.GetSpectrumData():
-        /*
-        int samplesSize = Mathf.ClosestPowerOfTwo(clip.samples);
-        samples = new float[samplesSize];
-
-        //track.Play();
-        
-        // Incomplete code:
-        // Grab the sample data as the song plays and store it in array. (Slow)
-        //track.GetSpectrumData(samples, 0, FFTWindow.Rectangular);
-        */
-
-        // Code for using AudioClip.GetData():
+        // Get the raw sample data
         samples = new float[clip.samples * clip.channels];
         float endTime = 0;
         float startTime = Time.time;   
         clip.GetData(samples, 0);
         endTime = Time.time;
 
+        SimpleSoundEnergyBeatDetection();
+
+        track.Play();
+        
+        /*
         // test: print the number of channels in the clip 
         Debug.Log("GetData() took " + (endTime - startTime) + " seconds.");
         Debug.Log("Channel count: " + clip.channels);
@@ -105,7 +107,7 @@ public class BeatDetection : MonoBehaviour
         Debug.Log("Element 0: " + samples[0]);
         Debug.Log("Element middle: " + samples[samples.Length / 2]);
         Debug.Log("Element last: " + samples[samples.Length - 1]);
-
+        */
         
     }
 
